@@ -1,7 +1,7 @@
 import React from "react";
 import firebase from "../../firebase";
 import { connect } from "react-redux";
-import { setCurrentChannel } from "../../actions";
+import { setCurrentChannel, setPrivateChannel } from "../../actions";
 import { Menu, Icon, Modal, Form, Input, Button } from "semantic-ui-react";
 
 class Channels extends React.Component {
@@ -19,6 +19,7 @@ class Channels extends React.Component {
   componentDidMount() {
     this.addListeners();
   }
+
   componentWillUnmount() {
     this.removeListeners();
   }
@@ -30,9 +31,11 @@ class Channels extends React.Component {
       this.setState({ channels: loadedChannels }, () => this.setFirstChannel());
     });
   };
+
   removeListeners = () => {
     this.state.channelsRef.off();
   };
+
   setFirstChannel = () => {
     const firstChannel = this.state.channels[0];
     if (this.state.firstLoad && this.state.channels.length > 0) {
@@ -41,6 +44,7 @@ class Channels extends React.Component {
     }
     this.setState({ firstLoad: false });
   };
+
   addChannel = () => {
     const { channelsRef, channelName, channelDetails, user } = this.state;
 
@@ -83,6 +87,7 @@ class Channels extends React.Component {
   changeChannel = channel => {
     this.setActiveChannel(channel);
     this.props.setCurrentChannel(channel);
+    this.props.setPrivateChannel(false);
   };
 
   setActiveChannel = channel => {
@@ -166,5 +171,5 @@ class Channels extends React.Component {
 
 export default connect(
   null,
-  { setCurrentChannel }
+  { setCurrentChannel, setPrivateChannel }
 )(Channels);
