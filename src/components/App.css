@@ -5,7 +5,8 @@ body,
   background: #eee;
   padding: 1em;
 }
-/* SidePanel */
+
+/* SidePanel.js */
 .menu {
   padding-bottom: 2em;
 }
@@ -16,13 +17,7 @@ body,
   overflow-y: scroll;
 }
 
-.messages__progress {
-  height: 58vh;
-  overflow-y: scroll;
-}
-
 /* MessageForm.js */
-
 .message__form {
   position: fixed !important;
   bottom: 1em;
@@ -32,6 +27,7 @@ body,
   z-index: 200;
 }
 
+/* Message.js */
 .message__self {
   border-left: 2px solid orange;
   padding-left: 8px;
@@ -41,6 +37,27 @@ body,
   padding: 1em;
 }
 
+/* ProgressBar.js */
 .progress__bar {
   margin: 0.3em 0 0 0 !important;
+}
+
+/* ColorPanel.js */
+.color__container {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  width: 35px;
+  border-radius: 3px;
+}
+
+.color__square {
+  width: 35px;
+  height: 35px;
+}
+
+.color__overlay {
+  width: 85px;
+  height: 35px;
+  transform: rotate(225deg);
 }
