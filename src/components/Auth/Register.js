@@ -23,9 +23,10 @@ class Register extends React.Component {
     usersRef: firebase.database().ref("users")
   };
 
-  isFormvalid = () => {
+  isFormValid = () => {
     let errors = [];
     let error;
+
     if (this.isFormEmpty(this.state)) {
       error = { message: "Fill in all fields" };
       this.setState({ errors: errors.concat(error) });
@@ -67,7 +68,7 @@ class Register extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    if (this.isFormvalid()) {
+    if (this.isFormValid()) {
       this.setState({ errors: [], loading: true });
       firebase
         .auth()
@@ -95,7 +96,7 @@ class Register extends React.Component {
             });
         })
         .catch(err => {
-          console.log(err);
+          console.error(err);
           this.setState({
             errors: this.state.errors.concat(err),
             loading: false
@@ -126,12 +127,13 @@ class Register extends React.Component {
       errors,
       loading
     } = this.state;
+
     return (
       <Grid textAlign="center" verticalAlign="middle" className="app">
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h1" icon color="orange" textAlign="center">
             <Icon name="puzzle piece" color="orange" />
-            Register for BisoChat
+            Register for DevChat
           </Header>
           <Form onSubmit={this.handleSubmit} size="large">
             <Segment stacked>
@@ -145,10 +147,11 @@ class Register extends React.Component {
                 value={username}
                 type="text"
               />
+
               <Form.Input
                 fluid
                 name="email"
-                icon="user"
+                icon="mail"
                 iconPosition="left"
                 placeholder="Email Address"
                 onChange={this.handleChange}
@@ -156,6 +159,7 @@ class Register extends React.Component {
                 className={this.handleInputError(errors, "email")}
                 type="email"
               />
+
               <Form.Input
                 fluid
                 name="password"
@@ -167,6 +171,7 @@ class Register extends React.Component {
                 className={this.handleInputError(errors, "password")}
                 type="password"
               />
+
               <Form.Input
                 fluid
                 name="passwordConfirmation"
@@ -178,6 +183,7 @@ class Register extends React.Component {
                 className={this.handleInputError(errors, "password")}
                 type="password"
               />
+
               <Button
                 disabled={loading}
                 className={loading ? "loading" : ""}

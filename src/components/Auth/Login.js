@@ -28,7 +28,7 @@ class Login extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    if (this.isFormvalid(this.state)) {
+    if (this.isFormValid(this.state)) {
       this.setState({ errors: [], loading: true });
       firebase
         .auth()
@@ -45,7 +45,8 @@ class Login extends React.Component {
         });
     }
   };
-  isFormvalid = ({ email, password }) => email && password;
+
+  isFormValid = ({ email, password }) => email && password;
 
   handleInputError = (errors, inputName) => {
     return errors.some(error => error.message.toLowerCase().includes(inputName))
@@ -55,19 +56,20 @@ class Login extends React.Component {
 
   render() {
     const { email, password, errors, loading } = this.state;
+
     return (
       <Grid textAlign="center" verticalAlign="middle" className="app">
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h1" icon color="violet" textAlign="center">
             <Icon name="code branch" color="violet" />
-            Login to BisoChat
+            Login to DevChat
           </Header>
           <Form onSubmit={this.handleSubmit} size="large">
             <Segment stacked>
               <Form.Input
                 fluid
                 name="email"
-                icon="user"
+                icon="mail"
                 iconPosition="left"
                 placeholder="Email Address"
                 onChange={this.handleChange}
@@ -75,6 +77,7 @@ class Login extends React.Component {
                 className={this.handleInputError(errors, "email")}
                 type="email"
               />
+
               <Form.Input
                 fluid
                 name="password"
@@ -105,7 +108,7 @@ class Login extends React.Component {
             </Message>
           )}
           <Message>
-            Don't have an account <Link to="/register">Register</Link>
+            Don't have an account? <Link to="/register">Register</Link>
           </Message>
         </Grid.Column>
       </Grid>

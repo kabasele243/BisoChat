@@ -110,11 +110,9 @@ body,
   0% {
     opacity: 0;
   }
-
   50% {
     opacity: 0.8;
   }
-
   100% {
     opacity: 0;
   }
@@ -137,21 +135,21 @@ body,
   width: 50%;
   height: 100%;
   animation: sweep 2s infinite;
-  background-image: linear-gradient(to left,
-      transparent,
-      rgba(255, 255, 255, 0.4),
-      transparent);
+  background-image: linear-gradient(
+    to left,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
 }
 
 @keyframes sweep {
   0% {
     transform: translateX(-100%);
   }
-
   50% {
     transform: translateX(150%);
   }
-
   100% {
     transform: translateX(-100%);
   }
